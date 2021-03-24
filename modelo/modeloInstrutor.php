@@ -1,69 +1,63 @@
 <?php
 class Instructor{
     private $idIntructor;
-    private $nombreCompleto;
-    private $tipoDocumento;
-    private $numeroDocumento;
-    private $direccion;
-    private $telefono;
-    private $correo;
+    private $nombre;
+    private $apellido;
+    private $genero; 
+    private $edad;
+    private $idPersona;
     public $conn=null;
 
     //idInstructor
     public function getIdIstructor(){return $this->idIstructor;}
     public function setIdIstructor($idIstructor){$this->idIstructor = $idInstructor;}
 
-    //nombreCompleto
-    public function getnombreCompleto(){return $this->nombreCmpleto;}
-    public function setnombreCompleto($nombreCompleto){$this->nombreCompleto = $nombreCompleto;}
+    //nombre
+    public function getnombre(){return $this->nombre;}
+    public function setnombre($nombre){$this->nombre = $nombre;}
 
-    //tipoDocumento
-    public function gettipoDocumento(){return $this->tipoDocumento;}
-    public function settipoDocumento($tipoDocumento){$this->tipoDocumento = $tipoDocumento;} 
+    //apellido
+    public function getapellido(){return $this->apellido;}
+    public function setapellido($apellido){$this->apellido = $apellido;} 
 
+    //genero
+    public function getgenero(){ return $this->genero;}
+    public function setgenero($genero) { $this->genero =$genero;}
 
-    //numeroDocumento
-    public function getnumeroDocumento(){return $this->numeroDocumento;}
-    public function setnumeroDocumento($numeroDocumento){$this->numeroDocumento = $numeroDocumento;} 
+    //edad
+    public function getedad(){ return $this->edad;}
+    public function setedad($edad) { $this->edad =$edad;}
 
-    //direccion
-    public function getdireccion(){ return $this->direccion;}
-    public function setdirccion($direccion) { $this->direccion =$direccion;}
-
-    //telefono
-    public function gettelefono(){ return $this->telefono;}
-    public function settelefono($telefono) { $this->telefono =$telefono;}
-
-    //correo
-    public function getcorreo(){ return $this->correo;}
-    public function setcorreo($correo) { $this->correo =$correo;}
+    //idPersona
+    public function getidPersona(){ return $this->idPersona;}
+    public function setidPersona($idPersona ) { $this->idPersona =$idPersona;}
 
 
     //conexion
     public function __construct() {$this->conn = new Conexion();}
 
     public function Agregar(){
-        $sentenciaSql = "INSERT INTO instructor(nombreCompleto,tipoDocumento,numeroDocumento,direccion,telefono,correo)
-                        VALUES($this->'pepe perez',$this->'cc',$this->1006463282,$this->'Carrera 21 29-10',$this->'3167341276',$this->'esdilmar@hotmail.com');    
+        $sentenciaSql = "INSERT INTO instructor('nombre', 'apellido', 'genero', 'edad', 'idPersona')
+                        VALUES($this->'',$this->'',$this->'',$this->'',$this->'');    
         ";
             $this->conn->Preparar($sentenciaSql);
             $this->conn->Ejecutar();
     }
 
     public function Modificar(){
-        $sentenciaSql = "UPDATE instructor SET nombreCompleto=?, tipoDocumento=?, numeroDocumento=?, direccion=?, telefono=?, correo=? WHERE numeroDocumento=?";
+        $sentenciaSql = "UPDATE instructor SET nombre=?, apellido=?, genero=?, edad=?, idPersona=? WHERE idIntructor=?";
         $this->conn->Preparar($sentenciaSql);
         $this->conn->Ejecutar();
     }
 
     public function Eliminar(){
-        $sentenciaSql="DELETE FROM instructor WHERE numeroDocumento=?";
+        $sentenciaSql="DELETE FROM instructor WHERE idIntructor=?";
         $this->conn->Preparar($sentenciaSql);
         $this->conn->Ejecutar();
     }
 
     public function Consultar(){
-        $sentenciaSql="SELECT * FROM istructor WHERE numeroDocumento=?";
+        $sentenciaSql="SELECT * FROM istructor WHERE idIntructor=?";
         $this->conn->Preparar($sentenciaSql);
         $this->conn->Ejecutar();
     }
@@ -75,12 +69,11 @@ class Instructor{
 
     public function __destruct() {
        $this->idInstructor;
-       $this->nombreCompleto;
-       $this->tipoDocumento;
-       $this->numeroDocumento;
-       $this->direccion;
-       $this->telefono;
-       $this->correo;
+       $this->nombre;
+       $this->apellido;
+       $this->genero;
+       $this->edad;
+       $this->idPersona;
     }       
 }
 ?>

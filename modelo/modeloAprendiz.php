@@ -1,41 +1,36 @@
 <?php
 class Aprendiz{
     private $idAprendiz;
-    private $nombreCompleto;
-    private $tipDocumento;
-    private $numeroDocumento;
-    private $direccion;
-    private $telefono;
-    private $correo;
+    private $nombre;
+    private $apellido;
+    private $genero; 
+    private $edad;
+    private $idPersona;
     public $conn=null;
 
     //idAprendiz
     public function getidAprendiz(){return $this->idAprendiz;}
     public function setidAprediz($idAprendiz){$this->idAprendiz = $idAprendiz;}
+    
+    //nombre
+    public function getnombre(){return $this->nombre;}
+    public function setnombre($nombre){$this->nombre = $nombre;}
 
-    //nombreCompleto
-    public function getnombreCompleto(){return $this->nombreCompleto;}
-    public function setnombreCompleto($nombreCompleto){$this->nombreCompleto = $nombreCompleto;} 
+    //apellido
+    public function getapellido(){return $this->apellido;}
+    public function setapellido($apellido){$this->apellido = $apellido;} 
 
-    //tipoDocumento
-    public function gettipoDocumento(){ return $this->tipoDocumento;}
-    public function settipoDocumento($tipDocumento) { $this->tipoDocumento =$tipDocumento;}
+    //genero
+    public function getgenero(){ return $this->genero;}
+    public function setgenero($genero) { $this->genero =$genero;}
 
-    //numeroDocumento
-    public function getnumeroDocumento(){ return $this->numeroDocumento;}
-    public function setnumeroDocumento($numeroDocumento) { $this->numeroDocumento =$numeroDocumento;}
+    //edad
+    public function getedad(){ return $this->edad;}
+    public function setedad($edad) { $this->edad =$edad;}
 
-    //direccion
-    public function getdireccion(){ return $this->direccion;}
-    public function setdireccion($direccion) { $this->direccion =$direccion;}
-
-     //telefono
-     public function gettelefono(){ return $this->telefono;}
-     public function settelefono($telefono) { $this->telefono =$telefono;}
-
-      //correo
-    public function getcorreo(){ return $this->correo;}
-    public function setcorreo($correo ) { $this->correo =$correo;}
+    //idPersona
+    public function getidPersona(){ return $this->idPersona;}
+    public function setidPersona($idPersona ) { $this->idPersona =$idPersona;}
 
  
 
@@ -43,27 +38,27 @@ class Aprendiz{
     public function __construct() {$this->conn = new Conexion();}
 
     public function Agregar(){
-        $sentenciaSql = "INSERT INTO Aprendiz( 'nombreCompleto', 'tipoDocumento', 'numeroDocumento', 'direccion', 'telefono', 'correo')
-                        VALUES($this->'EsdilmarCabrera', $this->'CC', $this->202030303, $this->'cll 34 45-45' , $this->'3213472182', $this->'esdilmar123@gmail.com' );    
+        $sentenciaSql = "INSERT INTO Aprendiz('nombre', 'apellido', 'genero', 'edad', 'idPersona')
+                        VALUES($this->'', $this->'',$this->'' , $this->'', $this->'' );    
         ";
         $this->conn->Preparar($sentenciaSql);
         $this->conn->Ejecutar();
     }
 
     public function Modificar(){
-        $sentenciaSql = "UPDATE Aprendiz SET nombreCompleto=?, tipoDocumento=?, numeroDocumento=?, direccion=?, telefono=?, correo=? WHERE idAprendiz=?";
+        $sentenciaSql = "UPDATE Aprendiz SET nombre=?, apellido=?, genero=?, edad=?, idPersona=? WHERE idAprendiz=?";
         $this->conn->Preparar($sentenciaSql);
         $this->conn->Ejecutar();
     }
 
     public function Eliminar(){
-        $consulta="DELETE FROM Aprendiz WHERE numeroDocumento=?";
+        $consulta="DELETE FROM Aprendiz WHERE idAprendiz=?";
         $this->conn->Preparar($sentenciaSql);
         $this->conn->Ejecutar();
     }
 
     public function Consultar(){
-        $consulta="SELECT * FROM Aprendiz WHERE numeroDocumento=?";
+        $consulta="SELECT * FROM Aprendiz WHERE idAprendiz=?";
         $this->conn->Preparar($sentenciaSql);
         $this->conn->Ejecutar();
 
@@ -74,12 +69,12 @@ class Aprendiz{
 
 
     public function __destruct() {
-        echo "<br>destruido: " . $this->nombreCompleto;
-        echo "<br>destruido: " . $this->tipoDocumento;
-        echo "<br>destruido: " . $this->numeroDocumento;
-        echo "<br>destruido: " . $this->direccion;
-        echo "<br>destruido: " . $this->telefono;
-        echo "<br>destruido: " . $this->correo;
+        $this->idAprendiz;
+        $this->nombre;
+        $this->apellido;
+        $this->genero;
+        $this->edad;
+        $this->idPersona;
     }       
 }
 ?>
