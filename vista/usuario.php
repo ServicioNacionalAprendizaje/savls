@@ -41,9 +41,11 @@ var_dump($respuesta);
 echo "</pre>";
 echo "<br/>";
 
+//ay hpt 
+
 /*Consultar*/
-/*$respuesta = $ControladorUsuario->listarUsuario()->json();
-echo $respuesta;*/
+$respuesta = $ControladorUsuario->listarUsuario()->json();
+echo $respuesta;
 
 
 /*Buscar por ID*/
