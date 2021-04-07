@@ -28,21 +28,22 @@ echo "<br/>";
 var_dump($respuesta);*/
 
 /*Actualizar usuario*/
-/*$usuario = [
-  "idUsuario" => 5,
-  "usuario" => "artunduaga23",
-  "contrasena" => "123121"
+$usuario = [
+  "idUsuario" => 6,
+  "usuario" => "artunduaga22",
+  "contrasena" => "5555",
+  "fecha_expiracion" => date("Y-m-d H:i:s")
 ];
 
 $respuesta = $ControladorUsuario->actualizarUsuario($usuario);
 echo "<pre>";
 var_dump($respuesta);
 echo "</pre>";
-echo "<br/>";*/
+echo "<br/>";
 
 /*Consultar*/
-$respuesta = $ControladorUsuario->listarUsuario()->json();
-echo $respuesta;
+/*$respuesta = $ControladorUsuario->listarUsuario()->json();
+echo $respuesta;*/
 
 
 /*Buscar por ID*/
