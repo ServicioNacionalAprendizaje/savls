@@ -1,5 +1,8 @@
+<?php
+require_once "./config/Conexion.php";
+?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <meta charset="utf-8">
@@ -53,84 +56,66 @@
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1 class="m-0">Lista de <?php echo $data["titulo"]; ?></h1>
+                            <h1 class="m-0"><?php echo $data["titulo"]; ?></h1>
                         </div><!-- /.col -->
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
-                                <li class="breadcrumb-item"><a href="#">Módulo <?php echo $data["titulo"]; ?></a></li>
+                                <li class="breadcrumb-item"><a href="#">Módulo Formulario Rol</a></li>
                                 <li class="breadcrumb-item active"><?php echo $data["titulo"]; ?></li>
                             </ol>
                         </div><!-- /.col -->
                     </div><!-- /.row -->
-                    <div class="row">
-                        <div class="col">
-                            <?php
-                            if (@$_GET['success']) { ?>
-                                <div class="alert alert-success alert-dismissible fade show text-center" role="alert">
-                                    <strong>Excelente!</strong> <?php echo @$_GET['success']; ?>
-                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                            <?php }
-                            if (@$_GET['error']) { ?>
-                                <div class="alert alert-danger alert-dismissible fade show text-center" role="alert">
-                                    <strong>Error!</strong> <?php echo @$_GET['error']; ?>
-                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                            <?php }
-                            if (@$_GET['success_error']) { ?>
-                                <div class="alert alert-danger alert-dismissible fade show text-center" role="alert">
-                                    <strong>Excelente!</strong> <?php echo @$_GET['success_error']; ?>
-                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                            <?php } ?>
-                        </div>
-                    </div>
-                    <div class="row mt-3">
-                        <div class="col">
-                            <a href="./?c=usuario&a=Nuevo"><button class="btn btn-sm btn-info">Nuevo Usuario <i class="fas fa-plus"></i></button></a>
-                            <a href="./?c=usuario&a=UsuariosEliminados"><button class="btn btn-sm btn-danger">Usuarios eliminados <i class="fas fa-trash"></i></button></a>
-                        </div>
-                    </div>
                     <div class="row mt-3">
                         <div class="col-md-12">
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th>Id</th>
-                                        <th>Usuario</th>
-                                        <th>Contraseña</th>
-                                        <th>Fecha Expiración</th>
-                                        <th>Fecha Modificación</th>
-                                        <th>Persona</th>
-                                        <th></th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <?php
-                                        $cont = 1;
-                                        foreach ($data["usuarios"] as $dato) {
-                                        ?>
-                                            <td><?php echo $cont++; ?></td>
-                                            <td><?php echo $dato["usuario"]; ?></td>
-                                            <td><?php echo $dato["contrasena"]; ?></td>
-                                            <td><?php echo $dato["fecha_expiracion"]; ?></td>
-                                            <td><?php echo $dato["fecha_modificacion"]; ?></td>
-                                            <td><?php echo $dato["nombre"] . " " . $dato["apellido"]; ?></td>
-                                            <td>
-                                                <a href="./?c=usuario&a=ModificarUsuario&idData=<?php echo $dato['id_usuario']; ?>"><button class="btn btn-sm btn-primary"><i class="fas fa-edit"></i></button></a>
-                                                <a href="./?c=usuario&a=EliminarUsuario&idData=<?php echo $dato['id_usuario']; ?>"><button class="eliminar btn btn-sm btn-danger"><i class="fas fa-trash"></i></button></a>
-                                            </td>
-                                    </tr>
-                                <?php } ?>
-                                </tbody>
-                            </table>
+                            <div class="register-box">
+                                <div class="card card-outline card-primary">
+                                    <div class="card-header text-center">
+                                        <a href="#" class="h1"><b>Registros </b><?php echo $data["titulo"]; ?></a>
+                                    </div>
+                                    <div class="card-body">
+                                        <p class="login-box-msg">Registrar un nuevo formulario rol</p>
+
+                                        <form action="./?c=formularioRol&a=Guardar" method="post" autocomplete="off">
+                                            <div class="form-group">
+                                                <label>Formulario</label>
+                                                <select name="slcidFormulario" class="form-control js-buscador" required>
+                                                    <option value="" selected disabled>Seleccione un formulario</option>
+                                                    <?php
+                                                    $this->db = Conectar::conexion();
+                                                    $sqlFormularios = "SELECT * FROM formulario WHERE estado > 0";
+                                                    $resultado = $this->db->query($sqlFormularios);
+                                                    while ($row = $resultado->fetch_array()) { ?>
+                                                        <option value="<?php echo $row['id_formulario']; ?>"><?php echo $row['descripcion']; ?></option>
+                                                    <?php } ?>
+                                                </select>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Rol</label>
+                                                <select name="slcidRol" class="form-control js-buscador" required>
+                                                    <option value="" selected disabled>Seleccione un rol</option>
+                                                    <?php
+                                                    $this->db = Conectar::conexion();
+                                                    $sqlRoles = "SELECT * FROM rol WHERE estado > 0";
+                                                    $resultado = $this->db->query($sqlRoles);
+                                                    while ($row = $resultado->fetch_array()) { ?>
+                                                        <option value="<?php echo $row['id_rol']; ?>"><?php echo $row['descripcion']; ?></option>
+                                                    <?php } ?>
+                                                </select>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col">
+                                                    <button class="btn btn-block btn-primary">Crear nuevo formulario rol</button>
+                                                </div>
+                                                <div class="col">
+                                                    <a href="./?c=formularioRol&a=ListarFormulariosRol"><button type="button" class="btn btn-block btn-danger">Regresar</button></a>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <!-- /.form-box -->
+                                </div><!-- /.card -->
+                            </div>
+                            <!-- /.register-box -->
                         </div>
                     </div>
                 </div><!-- /.container-fluid -->
@@ -188,6 +173,8 @@
     <script src="./componentes/dist/js/demo.js"></script>
     <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
     <script src="./componentes/dist/js/pages/dashboard.js"></script>
+    <!-- JS Funciones -->
+    <script src="./js/main.js"></script>
 </body>
 
 </html>

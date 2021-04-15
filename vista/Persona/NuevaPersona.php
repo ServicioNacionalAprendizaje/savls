@@ -26,8 +26,6 @@
     <link rel="stylesheet" href="./componentes/plugins/daterangepicker/daterangepicker.css">
     <!-- summernote -->
     <link rel="stylesheet" href="./componentes/plugins/summernote/summernote-bs4.min.css">
-    <!-- Select2 -->
-    <link rel="stylesheet" href="./componentes/plugins/select2/css/select2.min.css">
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -53,84 +51,67 @@
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1 class="m-0">Lista de <?php echo $data["titulo"]; ?></h1>
+                            <h1 class="m-0"><?php echo $data["titulo"]; ?></h1>
                         </div><!-- /.col -->
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
-                                <li class="breadcrumb-item"><a href="#">Módulo <?php echo $data["titulo"]; ?></a></li>
+                                <li class="breadcrumb-item"><a href="#">Módulo Personas</a></li>
                                 <li class="breadcrumb-item active"><?php echo $data["titulo"]; ?></li>
                             </ol>
                         </div><!-- /.col -->
                     </div><!-- /.row -->
-                    <div class="row">
-                        <div class="col">
-                            <?php
-                            if (@$_GET['success']) { ?>
-                                <div class="alert alert-success alert-dismissible fade show text-center" role="alert">
-                                    <strong>Excelente!</strong> <?php echo @$_GET['success']; ?>
-                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                            <?php }
-                            if (@$_GET['error']) { ?>
-                                <div class="alert alert-danger alert-dismissible fade show text-center" role="alert">
-                                    <strong>Error!</strong> <?php echo @$_GET['error']; ?>
-                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                            <?php }
-                            if (@$_GET['success_error']) { ?>
-                                <div class="alert alert-danger alert-dismissible fade show text-center" role="alert">
-                                    <strong>Excelente!</strong> <?php echo @$_GET['success_error']; ?>
-                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                            <?php } ?>
-                        </div>
-                    </div>
-                    <div class="row mt-3">
-                        <div class="col">
-                            <a href="./?c=usuario&a=Nuevo"><button class="btn btn-sm btn-info">Nuevo Usuario <i class="fas fa-plus"></i></button></a>
-                            <a href="./?c=usuario&a=UsuariosEliminados"><button class="btn btn-sm btn-danger">Usuarios eliminados <i class="fas fa-trash"></i></button></a>
-                        </div>
-                    </div>
                     <div class="row mt-3">
                         <div class="col-md-12">
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th>Id</th>
-                                        <th>Usuario</th>
-                                        <th>Contraseña</th>
-                                        <th>Fecha Expiración</th>
-                                        <th>Fecha Modificación</th>
-                                        <th>Persona</th>
-                                        <th></th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <?php
-                                        $cont = 1;
-                                        foreach ($data["usuarios"] as $dato) {
-                                        ?>
-                                            <td><?php echo $cont++; ?></td>
-                                            <td><?php echo $dato["usuario"]; ?></td>
-                                            <td><?php echo $dato["contrasena"]; ?></td>
-                                            <td><?php echo $dato["fecha_expiracion"]; ?></td>
-                                            <td><?php echo $dato["fecha_modificacion"]; ?></td>
-                                            <td><?php echo $dato["nombre"] . " " . $dato["apellido"]; ?></td>
-                                            <td>
-                                                <a href="./?c=usuario&a=ModificarUsuario&idData=<?php echo $dato['id_usuario']; ?>"><button class="btn btn-sm btn-primary"><i class="fas fa-edit"></i></button></a>
-                                                <a href="./?c=usuario&a=EliminarUsuario&idData=<?php echo $dato['id_usuario']; ?>"><button class="eliminar btn btn-sm btn-danger"><i class="fas fa-trash"></i></button></a>
-                                            </td>
-                                    </tr>
-                                <?php } ?>
-                                </tbody>
-                            </table>
+                            <div class="register-box">
+                                <div class="card card-outline card-primary">
+                                    <div class="card-header text-center">
+                                        <a href="#" class="h1"><b>Registros </b><?php echo $data["titulo"]; ?></a>
+                                    </div>
+                                    <div class="card-body">
+                                        <p class="login-box-msg">Registrar una nueva persona</p>
+
+                                        <form action="./?c=persona&a=Guardar" method="post" autocomplete="off">
+                                            <div class="form-group">
+                                                <label>Nombres</label>
+                                                <input type="text" class="form-control" name="txtNombres" placeholder="Ingrese sus nombres" maxlength="20" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Apellidos</label>
+                                                <input type="text" class="form-control" name="txtApellidos" placeholder="Ingrese sus apellidos" maxlength="20" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Edad</label>
+                                                <input type="number" class="form-control" name="txtEdad" placeholder="Ingresa tu edad" maxlength="3" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Género</label>
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <div class="form-check form-check-inline">
+                                                            <input class="form-check-input" type="radio" name="rdoGenero" value="M" required>
+                                                            <label class="form-check-label">Masculino</label>
+                                                        </div>
+                                                        <div class="form-check form-check-inline">
+                                                            <input class="form-check-input" type="radio" name="rdoGenero" value="F" required>
+                                                            <label class="form-check-label">Femenino</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col">
+                                                    <button class="btn btn-block btn-primary">Registrarme</button>
+                                                </div>
+                                                <div class="col">
+                                                    <a href="./?c=persona&a=Listar"><button type="button" class="btn btn-block btn-danger">Regresar</button></a>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <!-- /.form-box -->
+                                </div><!-- /.card -->
+                            </div>
+                            <!-- /.register-box -->
                         </div>
                     </div>
                 </div><!-- /.container-fluid -->
@@ -180,14 +161,14 @@
     <script src="./componentes/plugins/summernote/summernote-bs4.min.js"></script>
     <!-- overlayScrollbars -->
     <script src="./componentes/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
-    <!-- Select2 -->
-    <script src="./componentes/plugins/select2/js/select2.min.js"></script>
     <!-- AdminLTE App -->
     <script src="./componentes/dist/js/adminlte.js"></script>
     <!-- AdminLTE for demo purposes -->
     <script src="./componentes/dist/js/demo.js"></script>
     <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
     <script src="./componentes/dist/js/pages/dashboard.js"></script>
+    <!-- JS Funciones -->
+    <script src="./js/main.js"></script>
 </body>
 
 </html>

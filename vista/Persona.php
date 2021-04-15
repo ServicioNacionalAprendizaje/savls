@@ -26,8 +26,6 @@
     <link rel="stylesheet" href="./componentes/plugins/daterangepicker/daterangepicker.css">
     <!-- summernote -->
     <link rel="stylesheet" href="./componentes/plugins/summernote/summernote-bs4.min.css">
-    <!-- Select2 -->
-    <link rel="stylesheet" href="./componentes/plugins/select2/css/select2.min.css">
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -93,8 +91,8 @@
                     </div>
                     <div class="row mt-3">
                         <div class="col">
-                            <a href="./?c=usuario&a=Nuevo"><button class="btn btn-sm btn-info">Nuevo Usuario <i class="fas fa-plus"></i></button></a>
-                            <a href="./?c=usuario&a=UsuariosEliminados"><button class="btn btn-sm btn-danger">Usuarios eliminados <i class="fas fa-trash"></i></button></a>
+                            <a href="./?c=persona&a=Nuevo"><button class="btn btn-sm btn-info">Nueva Persona <i class="fas fa-plus"></i></button></a>
+                            <a href="./?c=persona&a=PersonasEliminadas"><button class="btn btn-sm btn-danger">Personas eliminadas <i class="fas fa-trash"></i></button></a>
                         </div>
                     </div>
                     <div class="row mt-3">
@@ -103,11 +101,10 @@
                                 <thead>
                                     <tr>
                                         <th>Id</th>
-                                        <th>Usuario</th>
-                                        <th>Contraseña</th>
-                                        <th>Fecha Expiración</th>
-                                        <th>Fecha Modificación</th>
-                                        <th>Persona</th>
+                                        <th>Nombres</th>
+                                        <th>Apellidos</th>
+                                        <th>Edad</th>
+                                        <th>Género</th>
                                         <th></th>
                                     </tr>
                                 </thead>
@@ -115,17 +112,16 @@
                                     <tr>
                                         <?php
                                         $cont = 1;
-                                        foreach ($data["usuarios"] as $dato) {
+                                        foreach ($data["personas"] as $dato) {
                                         ?>
                                             <td><?php echo $cont++; ?></td>
-                                            <td><?php echo $dato["usuario"]; ?></td>
-                                            <td><?php echo $dato["contrasena"]; ?></td>
-                                            <td><?php echo $dato["fecha_expiracion"]; ?></td>
-                                            <td><?php echo $dato["fecha_modificacion"]; ?></td>
-                                            <td><?php echo $dato["nombre"] . " " . $dato["apellido"]; ?></td>
+                                            <td><?php echo $dato["nombre"]; ?></td>
+                                            <td><?php echo $dato["apellido"]; ?></td>
+                                            <td><?php echo $dato["edad"]; ?></td>
+                                            <td><?php echo $dato["genero"]; ?></td>
                                             <td>
-                                                <a href="./?c=usuario&a=ModificarUsuario&idData=<?php echo $dato['id_usuario']; ?>"><button class="btn btn-sm btn-primary"><i class="fas fa-edit"></i></button></a>
-                                                <a href="./?c=usuario&a=EliminarUsuario&idData=<?php echo $dato['id_usuario']; ?>"><button class="eliminar btn btn-sm btn-danger"><i class="fas fa-trash"></i></button></a>
+                                                <a href="./?c=persona&a=ModificarPersona&idData=<?php echo $dato['id_persona']; ?>"><button class="btn btn-sm btn-primary"><i class="fas fa-edit"></i></button></a>
+                                                <a href="./?c=persona&a=EliminarPersona&idData=<?php echo $dato['id_persona']; ?>"><button class="eliminar btn btn-sm btn-danger"><i class="fas fa-trash"></i></button></a>
                                             </td>
                                     </tr>
                                 <?php } ?>
@@ -180,14 +176,14 @@
     <script src="./componentes/plugins/summernote/summernote-bs4.min.js"></script>
     <!-- overlayScrollbars -->
     <script src="./componentes/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
-    <!-- Select2 -->
-    <script src="./componentes/plugins/select2/js/select2.min.js"></script>
     <!-- AdminLTE App -->
     <script src="./componentes/dist/js/adminlte.js"></script>
     <!-- AdminLTE for demo purposes -->
     <script src="./componentes/dist/js/demo.js"></script>
     <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
     <script src="./componentes/dist/js/pages/dashboard.js"></script>
+    <!-- JS Funciones -->
+    <script src="./js/main.js"></script>
 </body>
 
 </html>
