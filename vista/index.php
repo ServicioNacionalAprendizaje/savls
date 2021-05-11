@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>AdminLTE 3 | Dashboard</title>
+  <title>AdminLTE 3 | Iniciar Sesión</title>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -28,56 +28,91 @@
   <link rel="stylesheet" href="./componentes/plugins/summernote/summernote-bs4.min.css">
 </head>
 
-<body class="hold-transition sidebar-mini layout-fixed">
-  <div class="wrapper">
-
-    <!-- Preloader -->
-    <div class="preloader flex-column justify-content-center align-items-center">
-      <img class="animation__shake" src="./componentes/dist/img/AdminLTELogo.png" alt="AdminLTELogo" height="60" width="60">
+<body class="hold-transition login-page">
+  <div class="login-box">
+    <div class="login-logo">
+      <img src="./componentes/dist/img/AdminLTELogo.png" width="200px" style="margin-bottom: -50px;">
+      <!--<a href="#"><b>Andres Motos </b>Racing</a>-->
     </div>
+    <!-- /.login-logo -->
+    <div class="card">
+      <div class="card-body login-card-body">
+        <p class="login-box-msg">Iniciar sesión</p>
 
-    <!-- Navbar -->
-    <?php include('./layouts/navbar.php'); ?>
-    <!-- /. Navbar -->
+        <div class="row">
+          <div class="col">
+            <?php
+            if (@$_GET['success']) { ?>
+              <div class="alert alert-success alert-dismissible fade show text-center" role="alert">
+                <strong>Excelente!</strong> <?php echo @$_GET['success']; ?>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+            <?php }
+            if (@$_GET['error']) { ?>
+              <div class="alert alert-danger alert-dismissible fade show text-center" role="alert">
+                <strong>Error!</strong> <?php echo @$_GET['error']; ?>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+            <?php }
+            if (@$_GET['success_error']) { ?>
+              <div class="alert alert-danger alert-dismissible fade show text-center" role="alert">
+                <strong>Excelente!</strong> <?php echo @$_GET['success_error']; ?>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+            <?php } ?>
+          </div>
+        </div>
 
-    <!-- Main Sidebar Container -->
-    <?php include('./layouts/sidebar.php'); ?>
-    <!-- /. Main Sidebar Container -->
+        <form action="./?c=index&a=Verifica" method="post" autocomplete="off">
+          <div class="input-group mb-3">
+            <input type="text" class="form-control" name="txtUsuario" placeholder="Usuario" required>
+            <div class="input-group-append">
+              <div class="input-group-text">
+                <span class="fas fa-envelope"></span>
+              </div>
+            </div>
+          </div>
+          <div class="input-group mb-3">
+            <input type="password" class="form-control" name="pwdClave" placeholder="Contraseña" required>
+            <div class="input-group-append">
+              <div class="input-group-text">
+                <span class="fas fa-lock"></span>
+              </div>
+            </div>
+          </div>
+          <div class="row mb-3">
+            <div class="col-12">
+              <button type="submit" class="btn btn-primary btn-block" name="sign">Iniciar Sesión</button>
+            </div>
+            <!-- /.col -->
+          </div>
+        </form>
 
-    <!-- Content Wrapper. Contains page content -->
-    <div class="content-wrapper">
-      <!-- Content Header (Page header) -->
-      <div class="content-header">
-        <div class="container-fluid">
-          <div class="row mb-2">
-            <div class="col-sm-6">
-              <h1 class="m-0">Dashboard</h1>
-            </div><!-- /.col -->
-            <div class="col-sm-6">
-              <ol class="breadcrumb float-sm-right">
-                <li class="breadcrumb-item"><a href="#">Home</a></li>
-                <li class="breadcrumb-item active">Dashboard v1</li>
-              </ol>
-            </div><!-- /.col -->
-          </div><!-- /.row -->
-        </div><!-- /.container-fluid -->
+        <!--<div class="social-auth-links text-center mb-3">
+        <p>- OR -</p>
+        <a href="#" class="btn btn-block btn-danger">
+          <i class="fab fa-google-plus mr-2"></i> Iniciar Sesión Usando Google+
+        </a>
+      </div>-->
+        <!-- /.social-auth-links -->
+
+        <!-- <p class="mb-1">
+          <a href="#">Olvidé mi contraseña <span class="badge badge-danger right">En Mantenimiento <i class="fa fa-sync fa-spin"></i></span></a>
+        </p> -->
+        <!-- <p class="mb-0">
+          <a href="./?c=register&a=VistaRegister" class="text-center">Registrar a un nuevo usuario</a>
+        </p> -->
       </div>
-      <!-- /.content-header -->
-
-      <!-- Main content -->
-      <section class="content">
-        <div class="container-fluid">
-        
-        </div><!-- /.container-fluid -->
-      </section>
-      <!-- /.content -->
+      <!-- /.login-card-body -->
     </div>
-    <!-- /.content-wrapper -->
-    <!-- Footer -->
-    <?php include('./layouts/footer.php'); ?>
-    <!-- /. Footer -->
   </div>
-  <!-- ./wrapper -->
+  <!-- /.login-box -->
 
   <!-- jQuery -->
   <script src="./componentes/plugins/jquery/jquery.min.js"></script>

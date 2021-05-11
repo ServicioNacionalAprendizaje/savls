@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 15-04-2021 a las 05:28:10
+-- Tiempo de generación: 20-04-2021 a las 00:16:59
 -- Versión del servidor: 10.4.17-MariaDB
 -- Versión de PHP: 8.0.1
 
@@ -39,6 +39,13 @@ CREATE TABLE `formulario` (
   `id_usuario_modificacion` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Volcado de datos para la tabla `formulario`
+--
+
+INSERT INTO `formulario` (`id_formulario`, `descripcion`, `etiqueta`, `ubicacion`, `estado`, `fecha_creacion`, `fecha_modificacion`, `id_usuario_creacion`, `id_usuario_modificacion`) VALUES
+(1, 'formulario administrador', 'aprendiz', '../prueba', b'1', '2021-04-19 16:43:46', '2021-04-19 16:43:58', NULL, NULL);
+
 -- --------------------------------------------------------
 
 --
@@ -55,6 +62,13 @@ CREATE TABLE `formulario_rol` (
   `id_usuario_creacion` int(11) DEFAULT NULL,
   `id_usuario_modificacion` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `formulario_rol`
+--
+
+INSERT INTO `formulario_rol` (`id_formulario_rol`, `estado`, `fecha_creacion`, `fecha_modificacion`, `id_formulario`, `id_rol`, `id_usuario_creacion`, `id_usuario_modificacion`) VALUES
+(1, b'1', '2021-04-19 17:14:24', '2021-04-19 17:14:24', 1, 1, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -75,6 +89,14 @@ CREATE TABLE `persona` (
   `id_usuario_modificacion` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Volcado de datos para la tabla `persona`
+--
+
+INSERT INTO `persona` (`id_persona`, `nombre`, `apellido`, `edad`, `genero`, `estado`, `fecha_creacion`, `fecha_modificacion`, `id_usuario_creacion`, `id_usuario_modificacion`) VALUES
+(1, 'Juan ', 'Artunduaga', 15, 'M', 1, '2021-04-19 14:52:44', '2021-04-19 14:53:06', NULL, NULL),
+(2, 'Cristian', 'Artunduaga', 18, 'M', 1, '2021-04-19 17:13:38', '2021-04-19 17:13:38', NULL, NULL);
+
 -- --------------------------------------------------------
 
 --
@@ -90,6 +112,13 @@ CREATE TABLE `rol` (
   `id_usuario_creacion` int(11) DEFAULT NULL,
   `id_usuario_modificacion` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `rol`
+--
+
+INSERT INTO `rol` (`id_rol`, `descripcion`, `estado`, `fecha_creacion`, `fecha_modificacion`, `id_usuario_creacion`, `id_usuario_modificacion`) VALUES
+(1, 'Administrador', b'1', '2021-04-19 17:13:48', '2021-04-19 17:13:48', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -107,9 +136,17 @@ CREATE TABLE `usuario` (
   `fecha_creacion` datetime NOT NULL,
   `fecha_modificacion` datetime NOT NULL,
   `id_persona` int(11) NOT NULL,
-  `id_usuario_creacion` int(11) NOT NULL,
-  `id_usuario_modificacion` int(11) NOT NULL
+  `id_usuario_creacion` int(11) DEFAULT NULL,
+  `id_usuario_modificacion` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `usuario`
+--
+
+INSERT INTO `usuario` (`id_usuario`, `usuario`, `contrasena`, `fecha_activacion`, `fecha_expiracion`, `estado`, `fecha_creacion`, `fecha_modificacion`, `id_persona`, `id_usuario_creacion`, `id_usuario_modificacion`) VALUES
+(1, 'izaan', '$2y$10$G/l6f0OCkbT.T5zs24oRO.ClfTv5RGJe8jMO1jKawvyxi87iWU12y', '2021-04-19 15:58:32', '2021-04-19 23:52:06', 1, '2021-04-19 15:58:32', '2021-04-19 16:52:06', 1, 0, 0),
+(2, 'cristian23', '$2y$10$t1yy2NHJVORjleU2NpSihuUHum4c/cfDz4u2j9ZGkVAAjAeaw/U9K', '2021-04-19 17:14:12', '2021-04-19 17:14:12', 1, '2021-04-19 17:14:12', '2021-04-19 17:14:12', 2, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -127,6 +164,14 @@ CREATE TABLE `usuario_rol` (
   `id_usuario_creacion` int(11) DEFAULT NULL,
   `id_usuario_modificacion` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `usuario_rol`
+--
+
+INSERT INTO `usuario_rol` (`id_usuario_rol`, `estado`, `fecha_creacion`, `fecha_modificacion`, `id_rol`, `id_usuario`, `id_usuario_creacion`, `id_usuario_modificacion`) VALUES
+(1, b'1', '2021-04-19 17:14:33', '2021-04-19 17:14:33', 1, 1, NULL, NULL),
+(2, b'1', '2021-04-19 17:14:42', '2021-04-19 17:14:42', 1, 2, NULL, NULL);
 
 --
 -- Índices para tablas volcadas
@@ -181,37 +226,37 @@ ALTER TABLE `usuario_rol`
 -- AUTO_INCREMENT de la tabla `formulario`
 --
 ALTER TABLE `formulario`
-  MODIFY `id_formulario` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_formulario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `formulario_rol`
 --
 ALTER TABLE `formulario_rol`
-  MODIFY `id_formulario_rol` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_formulario_rol` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `persona`
 --
 ALTER TABLE `persona`
-  MODIFY `id_persona` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_persona` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `rol`
 --
 ALTER TABLE `rol`
-  MODIFY `id_rol` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_rol` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `usuario_rol`
 --
 ALTER TABLE `usuario_rol`
-  MODIFY `id_usuario_rol` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_usuario_rol` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Restricciones para tablas volcadas

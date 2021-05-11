@@ -31,11 +31,11 @@ class UsuarioModelo
         return $this->usuario;
     }
 
-    public function insertarUsuario($txtUsuario, $txtcontrasena, $idPersona, $fechaExpiracion, $fecha)
+    public function insertarUsuario($txtUsuario, $hash, $idPersona, $fechaExpiracion, $fecha)
     {
         $resultado = $this->db->query("INSERT INTO usuario(
             usuario, contrasena, fecha_activacion, fecha_expiracion, estado, fecha_creacion, fecha_modificacion, id_persona)
-            VALUES ('$txtUsuario', '$txtcontrasena', '$fecha', '$fechaExpiracion', 1, '$fecha', '$fecha', '$idPersona')");
+            VALUES ('$txtUsuario', '$hash', '$fecha', '$fechaExpiracion', 1, '$fecha', '$fecha', '$idPersona')");
         if ($resultado) {
             echo "<script>window.location.href='./?c=usuario&a=ListarUsuarios&success=Se ha insertado la persona exitosamente.'</script>";
         } else {
@@ -43,9 +43,9 @@ class UsuarioModelo
         }
     }
 
-    public function ModificarUsuario($idUsuario, $txtUsuario, $txtcontrasena, $fechaExpiracion, $idPersona, $fecha)
+    public function ModificarUsuario($idUsuario, $txtUsuario, $hash, $fechaExpiracion, $idPersona, $fecha)
     {
-        $resultado = $this->db->query("UPDATE usuario SET usuario='$txtUsuario', contrasena='$txtcontrasena', fecha_expiracion='$fechaExpiracion', fecha_modificacion='$fecha', id_persona='$idPersona' WHERE id_usuario='$idUsuario'");
+        $resultado = $this->db->query("UPDATE usuario SET usuario='$txtUsuario', contrasena='$hash', fecha_expiracion='$fechaExpiracion', fecha_modificacion='$fecha', id_persona='$idPersona' WHERE id_usuario='$idUsuario'");
         if ($resultado) {
             echo "<script>window.location.href='./?c=usuario&a=ListarUsuarios&success=Se ha actualizado la persona exitosamente.'</script>";
         } else {

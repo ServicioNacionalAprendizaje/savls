@@ -1,34 +1,32 @@
 <?php
 
-if (!@$_GET['c']) {
+if (@$_GET['c'] == 'index') {
   $menu_principal = "menu-open";
   $estado_menu = "active";
   $estado_index = "active";
-}
-
-if (@$_GET['c'] == 'persona') {
-  $menu_principal_persona = "menu-open";
-  $estado_menu_persona = "active";
+} elseif (@$_GET['c'] == 'persona') {
+  $menu_modulo_seguridad = "menu-open";
+  $estado_modulo_seguridad = "active";
   $estado_personas = "active";
 } elseif (@$_GET['c'] == 'roles') {
-  $menu_principal_roles = "menu-open";
-  $estado_menu_roles = "active";
+  $menu_modulo_seguridad = "menu-open";
+  $estado_modulo_seguridad = "active";
   $estado_roles = "active";
-}elseif (@$_GET['c'] == 'usuario') {
-  $menu_principal_usuarios = "menu-open";
-  $estado_menu_usuarios = "active";
+} elseif (@$_GET['c'] == 'usuario') {
+  $menu_modulo_seguridad = "menu-open";
+  $estado_modulo_seguridad = "active";
   $estado_usuarios = "active";
-}elseif (@$_GET['c'] == 'formulario') {
-  $menu_principal_formulario = "menu-open";
-  $estado_menu_formulario = "active";
+} elseif (@$_GET['c'] == 'formulario') {
+  $menu_modulo_seguridad = "menu-open";
+  $estado_modulo_seguridad = "active";
   $estado_formulario = "active";
-}elseif (@$_GET['c'] == 'formularioRol') {
-  $menu_principal_formulario_rol = "menu-open";
-  $estado_menu_formulario_rol = "active";
+} elseif (@$_GET['c'] == 'formularioRol') {
+  $menu_modulo_seguridad = "menu-open";
+  $estado_modulo_seguridad = "active";
   $estado_formulario_rol = "active";
-}elseif (@$_GET['c'] == 'usuarioRol') {
-  $menu_principal_usuario_rol = "menu-open";
-  $estado_menu_usuario_rol = "active";
+} elseif (@$_GET['c'] == 'usuarioRol') {
+  $menu_modulo_seguridad = "menu-open";
+  $estado_modulo_seguridad = "active";
   $estado_usuario_rol = "active";
 }
 
@@ -91,12 +89,12 @@ if (@$_GET['c'] == 'persona') {
         </li>
 
 
-        <li class="nav-header">PERSONAS</li>
-        <li class="nav-item <?php echo $menu_principal_persona; ?>">
-          <a href="#" class="nav-link <?php echo $estado_menu_persona; ?>">
+        <li class="nav-header">MÓDULOS</li>
+        <li class="nav-item <?php echo $menu_modulo_seguridad; ?>">
+          <a href="#" class="nav-link <?php echo $estado_modulo_seguridad; ?>">
             <i class="fas fa-users"></i>
             <p>
-              Módulo Personas
+              Módulo De Seguridad
               <i class="right fas fa-angle-left"></i>
             </p>
           </a>
@@ -107,94 +105,51 @@ if (@$_GET['c'] == 'persona') {
                 <p>Personas</p>
               </a>
             </li>
-          </ul>
-        </li>
-        <li class="nav-header">ROLES</li>
-        <li class="nav-item <?php echo $menu_principal_roles; ?>">
-          <a href="#" class="nav-link <?php echo $estado_menu_roles; ?>">
-          <i class="fas fa-user-tag"></i>
-            <p>
-              Módulo Roles
-              <i class="right fas fa-angle-left"></i>
-            </p>
-          </a>
-          <ul class="nav nav-treeview">
             <li class="nav-item">
               <a href="./?c=roles&a=ListarRoles" class="nav-link <?php echo $estado_roles; ?>">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Roles</p>
               </a>
             </li>
-          </ul>
-        </li>
-        <li class="nav-header">USUARIOS</li>
-        <li class="nav-item <?php echo $menu_principal_usuarios; ?>">
-          <a href="#" class="nav-link <?php echo $estado_menu_usuarios; ?>">
-            <i class="fas fa-user"></i>
-            <p>
-              Módulo Usuarios
-              <i class="right fas fa-angle-left"></i>
-            </p>
-          </a>
-          <ul class="nav nav-treeview">
             <li class="nav-item">
               <a href="./?c=usuario&a=ListarUsuarios" class="nav-link <?php echo $estado_usuarios; ?>">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Usuarios</p>
               </a>
             </li>
-          </ul>
-        </li>
-        <li class="nav-header">FORMULARIOS</li>
-        <li class="nav-item <?php echo $menu_principal_formulario; ?>">
-          <a href="#" class="nav-link <?php echo $estado_menu_formulario; ?>">
-          <i class="fas fa-user-tag"></i>
-            <p>
-              Módulo Formularios
-              <i class="right fas fa-angle-left"></i>
-            </p>
-          </a>
-          <ul class="nav nav-treeview">
             <li class="nav-item">
               <a href="./?c=formulario&a=Listar" class="nav-link <?php echo $estado_formulario; ?>">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Formularios</p>
               </a>
             </li>
-          </ul>
-        </li>
-        <li class="nav-header">FORMULARIOS ROL</li>
-        <li class="nav-item <?php echo $menu_principal_formulario_rol; ?>">
-          <a href="#" class="nav-link <?php echo $estado_menu_formulario_rol; ?>">
-          <i class="fas fa-user-tag"></i>
-            <p>
-              Módulo Formularios Rol
-              <i class="right fas fa-angle-left"></i>
-            </p>
-          </a>
-          <ul class="nav nav-treeview">
             <li class="nav-item">
               <a href="./?c=formularioRol&a=ListarFormulariosRol" class="nav-link <?php echo $estado_formulario_rol; ?>">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Formularios Rol</p>
               </a>
             </li>
+            <li class="nav-item">
+              <a href="./?c=usuarioRol&a=ListarUsuariosRol" class="nav-link <?php echo $estado_usuario_rol; ?>">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Usuarios Rol</p>
+              </a>
+            </li>
           </ul>
         </li>
-        <li class="nav-header">USUARIOS ROL</li>
-        <li class="nav-item <?php echo $menu_principal_usuario_rol; ?>">
-          <a href="#" class="nav-link <?php echo $estado_menu_usuario_rol; ?>">
-          <i class="fas fa-user-tag"></i>
+        <li class="nav-item">
+          <a href="#" class="nav-link">
+            <i class="fas fa-sign-out-alt"></i>
             <p>
-              Módulo Usuarios Rol
+              Módulo De Salida
               <i class="right fas fa-angle-left"></i>
             </p>
           </a>
           <ul class="nav nav-treeview">
             <li class="nav-item">
-              <a href="./?c=usuarioRol&a=ListarUsuariosRol" class="nav-link <?php echo $estado_usuario_rol; ?>">
+              <a href="./?c=index&a=CerrarSesion" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
-                <p>Usuarios Rol</p>
+                <p>Cerrar Sesión</p>
               </a>
             </li>
           </ul>

@@ -10,17 +10,22 @@ class FormularioController
 
     public function Listar()
     {
-        $formulario = new FormularioModelo();
-        $data["titulo"] = "formularios";
-        $data["formularios"] = $formulario->getFormularios();
+        session_start();
+        if (@$_SESSION['id_user'] == "") {
+            echo "<script>window.location.href='./?c=index&a=VistaIndex'</script>";
+        } else {
+            $formulario = new FormularioModelo();
+            $data["titulo"] = "formularios";
+            $data["formularios"] = $formulario->getFormularios();
 
-        require_once "Vista/Formulario.php";
+            require_once "Vista/dashboard/Formulario.php";
+        }
     }
 
     public function Nuevo()
     {
         $data["titulo"] = "Nuevo formulario";
-        require_once "Vista/Formulario/NuevoFormulario.php";
+        require_once "Vista/dashboard/Formulario/NuevoFormulario.php";
     }
 
     public function FormulariosEliminados()
@@ -28,7 +33,7 @@ class FormularioController
         $formulario = new FormularioModelo();
         $data["titulo"] = "Formularios Eliminados";
         $data["formularios"] = $formulario->getFormulariosEliminados();
-        require_once "Vista/Formulario/FormulariosEliminados.php";
+        require_once "Vista/dashboard/Formulario/FormulariosEliminados.php";
     }
 
     public function Guardar()
@@ -51,7 +56,7 @@ class FormularioController
         $data["idFormulario"] = $idFormulario;
         $data["formulario"] = $formulario->getFormularioPorId($idFormulario);
         $data["titulo"] = "Modificar Formulario";
-        require_once "Vista/Formulario/ModificarFormulario.php";
+        require_once "Vista/dashboard/Formulario/ModificarFormulario.php";
     }
 
     public function ActualizarFormulario()

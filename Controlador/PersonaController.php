@@ -10,17 +10,22 @@ class PersonaController
 
     public function Listar()
     {
-        $persona = new PersonaModelo();
-        $data["titulo"] = "personas";
-        $data["personas"] = $persona->getPersonas();
+        session_start();
+        if (@$_SESSION['id_user'] == "") {
+            echo "<script>window.location.href='./?c=index&a=VistaIndex'</script>";
+        } else {
+            $persona = new PersonaModelo();
+            $data["titulo"] = "personas";
+            $data["personas"] = $persona->getPersonas();
 
-        require_once "vista/Persona.php";
+            require_once "vista/dashboard/Persona.php";
+        }
     }
 
     public function Nuevo()
     {
         $data["titulo"] = "Nueva persona";
-        require_once "vista/Persona/NuevaPersona.php";
+        require_once "vista/dashboard/Persona/NuevaPersona.php";
     }
 
     public function PersonasEliminadas()
@@ -28,7 +33,7 @@ class PersonaController
         $persona = new PersonaModelo();
         $data["titulo"] = "Personas Eliminadas";
         $data["personas"] = $persona->getPersonasEliminadas();
-        require_once "vista/Persona/PersonasEliminadas.php";
+        require_once "vista/dashboard/Persona/PersonasEliminadas.php";
     }
 
     public function Guardar()
@@ -52,7 +57,7 @@ class PersonaController
         $data["idPersona"] = $idPersona;
         $data["persona"] = $persona->getPersonaPorId($idPersona);
         $data["titulo"] = "Modificar Persona";
-        require_once "vista/Persona/ModificarPersona.php";
+        require_once "vista/dashboard/Persona/ModificarPersona.php";
     }
 
     public function ActualizarPersona()

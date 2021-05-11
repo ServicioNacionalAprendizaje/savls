@@ -46,7 +46,7 @@
                             </div>
                             <div class="form-group">
                                 <label>Contraseña</label>
-                                <input type="text" class="form-control" name="txtContrasena" value="<?php echo $data["usuario"]["contrasena"]; ?>" placeholder="Ingresa tu contraseña" maxlength="20" required>
+                                <input type="text" class="form-control" name="txtContrasena" placeholder="Ingresa una nueva contraseña" maxlength="20" required>
                             </div>
                             <div class="form-group">
                                 <label>Fecha Expiración</label>

@@ -10,17 +10,22 @@ class FormularioRolController
 
     public function ListarFormulariosRol()
     {
-        $formularioRol = new FormularioRolModelo();
-        $data["titulo"] = "formulariosRol";
-        $data["formulariosRol"] = $formularioRol->getFormulariosRol();
+        session_start();
+        if (@$_SESSION['id_user'] == "") {
+            echo "<script>window.location.href='./?c=index&a=VistaIndex'</script>";
+        } else {
+            $formularioRol = new FormularioRolModelo();
+            $data["titulo"] = "formulariosRol";
+            $data["formulariosRol"] = $formularioRol->getFormulariosRol();
 
-        require_once "Vista/FormularioRol.php";
+            require_once "Vista/dashboard/FormularioRol.php";
+        }
     }
 
     public function Nuevo()
     {
         $data["titulo"] = "Nuevo formulario rol";
-        require_once "Vista/FormularioRol/NuevoFormularioRol.php";
+        require_once "Vista/dashboard/FormularioRol/NuevoFormularioRol.php";
     }
 
     public function FormulariosRolEliminados()
@@ -28,7 +33,7 @@ class FormularioRolController
         $formularioRol = new FormularioRolModelo();
         $data["titulo"] = "Formularios Rol Eliminados";
         $data["formulariosRol"] = $formularioRol->getFormulariosRolEliminados();
-        require_once "Vista/FormularioRol/FormulariosRolEliminados.php";
+        require_once "Vista/dashboard/FormularioRol/FormulariosRolEliminados.php";
     }
 
     public function Guardar()
@@ -50,7 +55,7 @@ class FormularioRolController
         $data["idFormularioRol"] = $idFormularioRol;
         $data["formularioRol"] = $formularioRol->getFormularioRolPorId($idFormularioRol);
         $data["titulo"] = "Modificar Formulario Rol";
-        require_once "Vista/FormularioRol/ModificarFormularioRol.php";
+        require_once "Vista/dashboard/FormularioRol/ModificarFormularioRol.php";
     }
 
     public function ActualizarFormularioRol()
@@ -63,7 +68,7 @@ class FormularioRolController
         $fecha = date("Y-m-d H:i:s");
 
         $formularioRol = new FormularioRolModelo();
-        $formularioRol->ModificarFormularioRol($idFormularioRol,$fecha, $idFormulario, $idRol);
+        $formularioRol->ModificarFormularioRol($idFormularioRol, $fecha, $idFormulario, $idRol);
         $this->ListarFormulariosRol();
     }
 

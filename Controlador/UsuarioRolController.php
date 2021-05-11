@@ -10,17 +10,22 @@ class UsuarioRolController
 
     public function ListarUsuariosRol()
     {
-        $usuarioRol = new UsuarioRolModelo();
-        $data["titulo"] = "usuariosRol";
-        $data["usuariosRol"] = $usuarioRol->getUsuariosRol();
+        session_start();
+        if (@$_SESSION['id_user'] == "") {
+            echo "<script>window.location.href='./?c=index&a=VistaIndex'</script>";
+        } else {
+            $usuarioRol = new UsuarioRolModelo();
+            $data["titulo"] = "usuariosRol";
+            $data["usuariosRol"] = $usuarioRol->getUsuariosRol();
 
-        require_once "Vista/UsuarioRol.php";
+            require_once "Vista/dashboard/UsuarioRol.php";
+        }
     }
 
     public function Nuevo()
     {
         $data["titulo"] = "Nuevo usuario rol";
-        require_once "Vista/UsuarioRol/NuevoUsuarioRol.php";
+        require_once "Vista/dashboard/UsuarioRol/NuevoUsuarioRol.php";
     }
 
     public function UsuariosRolEliminados()
@@ -28,7 +33,7 @@ class UsuarioRolController
         $usuarioRol = new UsuarioRolModelo();
         $data["titulo"] = "Usuarios Rol Eliminados";
         $data["usuariosRol"] = $usuarioRol->getUsuariosRolEliminados();
-        require_once "Vista/UsuarioRol/UsuariosRolEliminados.php";
+        require_once "Vista/dashboard/UsuarioRol/UsuariosRolEliminados.php";
     }
 
     public function Guardar()
@@ -50,7 +55,7 @@ class UsuarioRolController
         $data["idUsuarioRol"] = $idUsuarioRol;
         $data["usuarioRol"] = $usuarioRol->getUsuarioRolPorId($idUsuarioRol);
         $data["titulo"] = "Modificar Usuario Rol";
-        require_once "Vista/UsuarioRol/ModificarUsuarioRol.php";
+        require_once "Vista/dashboard/UsuarioRol/ModificarUsuarioRol.php";
     }
 
     public function ActualizarUsuarioRol()
@@ -63,7 +68,7 @@ class UsuarioRolController
         $fecha = date("Y-m-d H:i:s");
 
         $usuarioRol = new UsuarioRolModelo();
-        $usuarioRol->ModificarUsuarioRol($idUsuarioRol,$fecha, $idRol, $idUsuario);
+        $usuarioRol->ModificarUsuarioRol($idUsuarioRol, $fecha, $idRol, $idUsuario);
         $this->ListarUsuariosRol();
     }
 

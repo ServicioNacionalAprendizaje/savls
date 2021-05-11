@@ -10,17 +10,22 @@ class RolesController
 
     public function ListarRoles()
     {
-        $rol = new RolModelo();
-        $data["titulo"] = "roles";
-        $data["roles"] = $rol->getRoles();
+        session_start();
+        if (@$_SESSION['id_user'] == "") {
+            echo "<script>window.location.href='./?c=index&a=VistaIndex'</script>";
+        } else {
+            $rol = new RolModelo();
+            $data["titulo"] = "roles";
+            $data["roles"] = $rol->getRoles();
 
-        require_once "vista/Roles.php";
+            require_once "vista/dashboard/Roles.php";
+        }
     }
 
     public function NuevoRol()
     {
         $data["titulo"] = "Nuevo rol";
-        require_once "vista/Rol/NuevoRol.php";
+        require_once "vista/dashboard/Rol/NuevoRol.php";
     }
 
     public function RolesEliminados()
@@ -28,7 +33,7 @@ class RolesController
         $rol = new RolModelo();
         $data["titulo"] = "Roles Eliminados";
         $data["roles"] = $rol->getRolesEliminados();
-        require_once "vista/Rol/RolesEliminados.php";
+        require_once "vista/dashboard/Rol/RolesEliminados.php";
     }
 
     public function Guardar()
@@ -49,7 +54,7 @@ class RolesController
         $data["idRol"] = $idRol;
         $data["rol"] = $rol->getRolPorId($idRol);
         $data["titulo"] = "Modificar Rol";
-        require_once "vista/Rol/ModificarRol.php";
+        require_once "vista/dashboard/Rol/ModificarRol.php";
     }
 
     public function ActualizarRol()
